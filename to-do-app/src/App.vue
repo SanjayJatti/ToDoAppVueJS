@@ -27,13 +27,17 @@ const toggleTodo = (id) => {
 const handleDeleteTodo = (id) => {
   todos.value = todos.value.filter((item) => item.id !== id);
 };
+const handleEditTodo= ({id, title})=>{
+  const targetTodo = todos.value.find(item => item.id === id);
+  if(targetTodo) targetTodo.title = title;
+}
 onMounted(fetchTodos);
 </script>
 
 <template>
   <h3>To Do List</h3>
   <AddTodo @add="addTodo" />
-  <TodoList :todos="todos" @toggle="toggleTodo" @delete="handleDeleteTodo" />
+  <TodoList :todos="todos" @toggle="toggleTodo" @delete="handleDeleteTodo" @update="handleEditTodo" />
 </template>
 
 <style scoped></style>
