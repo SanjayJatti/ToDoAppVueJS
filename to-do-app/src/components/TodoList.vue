@@ -15,7 +15,6 @@ const deleteTodo = (id) => {
 const handleEdit = (todo) => {
   editId.value = todo.id;
   editTitle.value = todo.title;
-
 };
 const handleSaveEdit = (id) => {
   emit("update", { id, title: editTitle.value });
@@ -45,7 +44,15 @@ const handleCancelEdit = () => {
         <button @click="handleEdit(todo)">Edit</button>
       </div>
       <div v-else>
-        <input type="text" v-model="editTitle" @keyup="(event)=> {if(event.key === 'Enter') handleSaveEdit(todo.id) }"/>
+        <input
+          type="text"
+          v-model="editTitle"
+          @keyup="
+            (event) => {
+              if (event.key === 'Enter') handleSaveEdit(todo.id);
+            }
+          "
+        />
         <button @click="handleSaveEdit(todo.id)">Save</button>
         <button @click="handleCancelEdit">Cancel</button>
       </div>
